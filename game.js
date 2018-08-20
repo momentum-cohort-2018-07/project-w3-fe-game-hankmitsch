@@ -62,7 +62,15 @@ start () {
     }
     update () {
         this.player.update()
-        // fall(this.star)  
+        this.invader.forEach(function(invader){
+        invader.update()
+    })
+    this.star.forEach(function(star){
+        star.update()
+    })
+    this.smallstar.forEach(function(smallstar){
+        smallstar.update()
+    })
 
     }
     draw () {
@@ -140,7 +148,8 @@ start () {
             }
         }
         update() {
-           fall ()    
+           this.center.y += 1  
+           if (this.center.y >= 530) { this.center.y = 0; this.center.x = Math.floor(Math.random()*550) }
         }
         draw () {
            this.game.context.fillStyle = 'red'
@@ -165,7 +174,8 @@ start () {
             this.game.context.fillRect(this.center.x, this.center.y, this.size.x, this.size.y)
         }
         update () {
-        
+            this.center.y += .5
+            if (this.center.y >= 530) { this.center.y = 0; this.center.x = Math.floor(Math.random()*550) }
         }
     }
 
@@ -186,7 +196,8 @@ start () {
             this.game.context.fillRect(this.center.x, this.center.y, this.size.x, this.size.y)
         }
         update () {
-        
+            this.center.y += .2
+            if (this.center.y >= 530) { this.center.y = 0; this.center.x = Math.floor(Math.random()*550) }
         }
     }
 
