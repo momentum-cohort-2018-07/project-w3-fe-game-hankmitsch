@@ -1,7 +1,6 @@
 const GRID_SIZE = 20
 const TICKS_PER_MOVE = 10
-const COLORS = {
-}
+
 const canvas = document.getElementById('game-canvas')
 const screenSize = { x: canvas.width, y: canvas.height,
 }
@@ -10,7 +9,20 @@ function startGame () {
   let game = new Game('game-canvas')
   game.start()
 }
-
+var position = this.center
+// function fall() {
+//         var pos = this.center;
+//         var id = setInterval(frame, 5);
+//         function frame() {
+//           if (pos == 350) {
+//             clearInterval(id);
+//           } else {
+//             pos++; 
+//             elem.style.top = pos + 'px'; 
+//           }
+//         }
+      
+// }
 
 
 class Game {
@@ -23,6 +35,18 @@ class Game {
     this.invader = [new Invader(this), new Invader(this), new Invader(this), new Invader(this), new Invader(this), new Invader(this)]
     this.star = [new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this)]
     this.ticks = 0
+
+    function collision () {
+        var rect1 = this.player
+        var rect2 = this.invader
+        
+        if (rect1.x < rect2.x + rect2.width &&
+           rect1.x + rect1.width > rect2.x &&
+           rect1.y < rect2.y + rect2.height &&
+           rect1.y + rect1.height > rect2.y) {
+            this.context.clearRect(0, 0, this.player.width, this.player.height)
+           }
+    }
     
     let tick = () => {
         this.ticks++
@@ -38,6 +62,7 @@ start () {
     }
     update () {
         this.player.update()
+        // fall(this.star)  
 
     }
     draw () {
@@ -50,6 +75,7 @@ start () {
         this.invader.forEach(function(invader){
             invader.draw()
         })
+     
     }
 }
 
@@ -110,9 +136,7 @@ start () {
             }
         }
         update() {
-            if (startGame()) {
-                this.center.y +=5
-            }
+           fall ()    
         }
         draw () {
            this.game.context.fillStyle = 'red'
