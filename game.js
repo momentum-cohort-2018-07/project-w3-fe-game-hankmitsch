@@ -24,7 +24,6 @@ var position = this.center
       
 // }
 
-
 class Game {
   constructor (canvasId) {
     this.canvas = document.getElementById(canvasId)
