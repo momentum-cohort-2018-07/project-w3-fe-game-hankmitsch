@@ -34,6 +34,7 @@ class Game {
     // this.bullet = new Bullet(this)
     this.invader = [new Invader(this), new Invader(this), new Invader(this), new Invader(this), new Invader(this), new Invader(this)]
     this.star = [new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this)]
+    this.smallstar = [new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this)]
     this.ticks = 0
 
     function collision () {
@@ -70,11 +71,15 @@ start () {
         this.star.forEach(function(star){
             star.draw()
         })
+        this.smallstar.forEach(function(smallstar){
+            smallstar.draw()
+        })
         this.player.draw()
         // this.bullet.draw()
         this.invader.forEach(function(invader){
             invader.draw()
         })
+      
      
     }
 }
@@ -152,8 +157,8 @@ start () {
                 y: Math.floor(Math.random()*550)
             }
             this.size = {
-                x: 3,
-                y: 3
+                x: 4,
+                y: 4
             }
         }
         draw () {
@@ -161,9 +166,31 @@ start () {
             this.game.context.fillRect(this.center.x, this.center.y, this.size.x, this.size.y)
         }
         update () {
-            this.center.y += 1
+        
         }
     }
+
+    class SmallStar {
+        constructor (game){
+            this.game = game
+            this.center = {
+                x: Math.floor(Math.random()*550),
+                y: Math.floor(Math.random()*550)
+            }
+            this.size = {
+                x: 1,
+                y: 1
+            }
+        }
+        draw () {
+            this.game.context.fillStyle = 'white'
+            this.game.context.fillRect(this.center.x, this.center.y, this.size.x, this.size.y)
+        }
+        update () {
+        
+        }
+    }
+
 
     // class Bullet {
     //     constructor(game) {
