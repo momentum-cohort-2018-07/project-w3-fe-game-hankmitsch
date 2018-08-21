@@ -5,14 +5,19 @@ class Invaders {
       x: Math.floor(Math.random() * 550),
       y: 10
     }
+    this.speed = Math.random() * 3 + 2
     this.size = {
       x: 20,
       y: 20
     }
   }
   update () {
-    this.center.y += 3
-    if (this.center.y >= 530) { this.center.y = 0; this.center.x = Math.floor(Math.random() * 550) }
+    this.center.y += this.speed + 0
+    if (this.center.y >= 530) {
+      this.center.y = 0
+      this.center.x = Math.floor(Math.random() * 550)
+      this.speed = Math.random() * 4 + 1
+    }
   }
   draw () {
     this.game.context.fillStyle = 'red'

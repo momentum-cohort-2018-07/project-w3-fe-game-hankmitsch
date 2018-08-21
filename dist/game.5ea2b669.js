@@ -363,6 +363,7 @@ var Invaders = function () {
       x: Math.floor(Math.random() * 550),
       y: 10
     };
+    this.speed = Math.random() * 3 + 2;
     this.size = {
       x: 20,
       y: 20
@@ -372,9 +373,11 @@ var Invaders = function () {
   _createClass(Invaders, [{
     key: 'update',
     value: function update() {
-      this.center.y += 3;
+      this.center.y += this.speed + 0;
       if (this.center.y >= 530) {
-        this.center.y = 0;this.center.x = Math.floor(Math.random() * 550);
+        this.center.y = 0;
+        this.center.x = Math.floor(Math.random() * 550);
+        this.speed = Math.random() * 4 + 1;
       }
     }
   }, {
@@ -436,9 +439,18 @@ var Game = function () {
     this.context = this.canvas.getContext('2d');
     this.size = { width: this.canvas.width, height: this.canvas.height };
     this.player = new _Player2.default(this);
-    this.invaders = [new _invaders2.default(this), new _invaders2.default(this), new _invaders2.default(this), new _invaders2.default(this), new _invaders2.default(this), new _invaders2.default(this)];
-    this.star = [new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this), new _Star2.default(this)];
-    this.smallstar = [new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this), new _SmallStar2.default(this)];
+    this.invaders = [];
+    for (var i = 0; i < 10; i++) {
+      this.invaders.push(new _invaders2.default(this));
+    }
+    this.star = [];
+    for (var i = 0; i < 25; i++) {
+      this.star.push(new _Star2.default(this));
+    }
+    this.smallstar = [];
+    for (var i = 0; i < 25; i++) {
+      this.smallstar.push(new _SmallStar2.default(this));
+    }
     this.ticks = 0;
 
     var tick = function tick() {
@@ -520,7 +532,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '54937' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62173' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

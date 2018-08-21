@@ -16,9 +16,18 @@ class Game {
     this.context = this.canvas.getContext('2d')
     this.size = { width: this.canvas.width, height: this.canvas.height }
     this.player = new Player(this)
-    this.invaders = [new Invaders(this), new Invaders(this), new Invaders(this), new Invaders(this), new Invaders(this), new Invaders(this)]
-    this.star = [new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this), new Star(this)]
-    this.smallstar = [new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this), new SmallStar(this)]
+    this.invaders = []
+    for (var i = 0; i < 10; i++) {
+      this.invaders.push(new Invaders(this))
+    }
+    this.star = []
+    for (var i = 0; i < 25; i++) {
+      this.star.push(new Star(this))
+    }
+    this.smallstar = []
+    for (var i = 0; i < 25; i++) {
+      this.smallstar.push(new SmallStar(this))
+    }
     this.ticks = 0
 
     let tick = () => {
